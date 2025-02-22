@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "build:android": "rmdir android /S /Q && ionic cap build android",
+    "build:android": "ionic cap build android",
     "preview": "vite preview",
     "test.e2e": "cypress run",
     "test.unit": "vitest",
