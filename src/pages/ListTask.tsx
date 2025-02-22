@@ -1,6 +1,6 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonList, IonItem, IonButton, IonIcon, IonReorderGroup, ItemReorderEventDetail, IonReorder, IonCheckbox, IonActionSheet } from '@ionic/react';
 import ExploreContainer from '../components/ExploreContainer';
-import './Tab1.css';
+import './ListTask.css';
 import { trash } from 'ionicons/icons';
 import { CheckboxChangeEventDetail, IonCheckboxCustomEvent } from '@ionic/core';
 import { useState } from 'react';
@@ -34,6 +34,7 @@ const Tab1: React.FC<ContainerProps> = ({ tasks, setTasks }) => {
             <IonButton 
               style={{marginRight: '20px'}}
               onClick={() => setOrder(!order)}
+              disabled={tasks.length == 0}
             >
               Ordonner
             </IonButton>
