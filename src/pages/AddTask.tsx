@@ -1,6 +1,6 @@
 import { IonButton, IonContent, IonHeader, IonInput, IonPage, IonTitle, IonToolbar, useIonToast } from '@ionic/react';
 import ExploreContainer from '../components/ExploreContainer';
-import './Tab2.css';
+import './AddTask.css';
 import { useState } from 'react';
 import { checkmarkOutline, closeOutline } from 'ionicons/icons';
 import { v4 as uuidv4 } from 'uuid';
