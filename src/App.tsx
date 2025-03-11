@@ -10,7 +10,7 @@ import {
   setupIonicReact
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { add, addOutline, ellipse, list, listOutline, square, triangle } from 'ionicons/icons';
+import { add, list } from 'ionicons/icons';
 import Tab1 from './pages/ListTask';
 import Tab2 from './pages/AddTask';
 
@@ -44,8 +44,9 @@ import '@ionic/react/css/palettes/dark.system.css';
 /* Theme variables */
 import './theme/variables.css';
 import { useEffect, useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
+
 import { Preferences } from '@capacitor/preferences';
+import { StatusBar } from "@capacitor/status-bar";
 
 setupIonicReact();
 
@@ -57,48 +58,11 @@ interface Task {
 const App: React.FC = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
 
-  // const setTask = async (id: string, task: string) => {
-  //   try {
-  //     const newTask = { id: id, title: task }
-  //     const { value } = await Preferences.get({ key: 'tasks'})
-  //     let tasksParse = [];
-  //     let tasksStringify = '';
-
-  //     if(value) {
-  //       tasksParse = JSON.parse(value)
-  //     }
-  //     tasksParse.push(newTask)
-  //     tasksStringify = JSON.stringify(tasksParse)
-  //     await Preferences.set({
-  //       key: "tasks",
-  //       value: tasksStringify
-  //     })
-  //   } catch(err) {
-  //     console.log("Une erreur d'insertion est survenue!")
-  //   }
-
-  // }
-
   const getTasks = async () => {
     const { value } = await Preferences.get({ key: 'tasks' })
     const tasks = value ? JSON.parse(value) : [];
     return tasks
   }
-  
-  // const removeTask = async (id: string) => {
-  //   const tasks = await getTasks()
-  //   let tasksStringify = '';
-  //   const newTasksList = []
-
-  //   if(tasks.length === 0) {
-  //     return;
-  //   }
-  //   newTasksList.push(...tasks.filter((task: Task) => task.id !== id))
-
-  //   tasksStringify = JSON.stringify(newTasksList)
-
-  //   await Preferences.set({ key: 'tasks', value: tasksStringify })
-  // }
 
   useEffect(() => {
     (async() => {
@@ -109,11 +73,16 @@ const App: React.FC = () => {
 
   useEffect(() => {
     (async() => {
-      let tasksStringify = JSON.stringify(tasks)
+      const tasksStringify = JSON.stringify(tasks)
       await Preferences.set({ key: 'tasks', value: tasksStringify})
       console.log('Update:', await getTasks())
     })();
   }, [tasks])
+
+  useEffect(() => {
+    // Applique un style sûr pour éviter l'encoche
+    StatusBar.setOverlaysWebView({ overlay: false });
+  }, []);
 
   return (
     <IonApp>

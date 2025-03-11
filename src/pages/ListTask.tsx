@@ -1,8 +1,5 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonList, IonItem, IonButton, IonIcon, IonReorderGroup, ItemReorderEventDetail, IonReorder, IonCheckbox, IonActionSheet } from '@ionic/react';
-import ExploreContainer from '../components/ExploreContainer';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonList, IonItem, IonButton, IonReorderGroup, ItemReorderEventDetail, IonReorder, IonActionSheet } from '@ionic/react';
 import './ListTask.css';
-import { trash } from 'ionicons/icons';
-import { CheckboxChangeEventDetail, IonCheckboxCustomEvent } from '@ionic/core';
 import { useState } from 'react';
 
 interface Task {
